@@ -3,6 +3,7 @@ main();
 function main() {
 
     const display = document.querySelector('#display');
+    display.setAttribute('disabled', true);
     display.value = '';
 
     const calculator = document.querySelector('#calculator');
@@ -100,6 +101,7 @@ function divide(num1, num2) {
     }
     return num1 / num2;
 }
+
 
 function operate(op, num1, num2) {
     if(op == '' | num2 == ''){
