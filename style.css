@@ -20,7 +20,8 @@
     border-radius: 2px;
     background-color: #dfeeea;
 }
-input{
+
+input {
     font-size: 18px;
     color: #1d1c1b;
 }
@@ -34,7 +35,7 @@ button {
     height: 60px;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
     background-color: #5E8B7E;
     font-size: 18px;
@@ -87,4 +88,70 @@ button:hover{
     grid-template-columns: 1fr;
     column-gap: 10px;
     row-gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    #calculator {
+        display: grid;
+        width: 300px;
+        height: auto;
+        margin-top: 50px;
+        background-color: #2f5d62;
+        border: 1px solid #2f5d62;
+        border-radius: 8px;
+    }
+
+    #screen {
+        display: grid;
+        margin: 20px 10px 10px 20px;
+        height: 60px;
+        border-radius: 2px;
+        background-color: #dfeeea;
+        width: 262px;
+    }
+
+    input {
+        font-size: 18px;
+        color: #1d1c1b;
+    }
+
+    #functionalBtn {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+        justify-items: center;
+        margin: 5px 15px 5px 15px;
+    }
+
+    #clearBtn {
+        width: 120px;
+        height: 55px;
+    }
+
+    #deleteBtn {
+        width: 120px;
+        height: 55px;
+    }
+
+    #btnLayout {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        column-gap: 10px;
+        margin: 10px 20px 20px 20px;
+    }
+    #numpad {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        column-gap: 6px;
+        row-gap: 8px;
+    }
+    #operators {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+        column-gap: 5px;
+        row-gap: 8px;
+    }
+
 }
