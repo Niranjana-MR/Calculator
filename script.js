@@ -17,27 +17,47 @@ function main() {
     let str = '';
     let result = 0;
 
+    document.addEventListener('keyup', (e) => {
+        let key = e.key;
+        triggerKey(key);
+    });
+
     calculator.addEventListener('click', (event) => {
 
         const isButton = event.target.nodeName === 'BUTTON';
+
         if (isButton) {
             let input = (event.target.innerHTML);
             if (!isNaN(input)) {
                 value += input;
                 display.value += (event.target.innerHTML);
-            } else {
+            } else { //Enter if input isn't a number
+
+                //if clear button is pressed
                 if (event.target.innerHTML === 'CLEAR') {
                     operand1 = '';
                     operand2 = '';
                     operator = '';
                     value = '';
                     result = 0;
+                    decimal.disabled = false;
                     display.value = '';
-                } else if (event.target.innerHTML === 'DELETE') {
-                    if (display.value !== '')
+                }
+
+                //if delete button is pressed
+                else if (event.target.innerHTML === 'DELETE') {
+                    if (display.value !== '') {
                         str = display.value;
-                    display.value = str.slice(0, -1);
-                } else if (event.target.innerHTML === '=') {
+                        display.value = str.slice(0, -1);
+                        value = value.slice(0, -1);
+                        if( display.value === ''){
+                            document.querySelector('#clearBtn').click();
+                        }
+                    }
+                }
+
+                //evulate the result
+                else if (event.target.innerHTML === '=') {
                     if (operand2 === '') {
                         operand2 = value;
                         value = '';
@@ -45,26 +65,40 @@ function main() {
                     result = operate(operator, operand1, operand2);
                     if (typeof (result) === 'undefined') {
                         result = 0;
-                    }else if(isNaN(result)){
+                    } else if (isNaN(result)) {
                         result = 0;
                     }
                     operand1 = result;
                     operand2 = '';
                     operator = '';
                     display.value = operand1;
-                } else {
+                }
+
+                //for any other operations
+                else {
+
+                    //for decimal value
                     if (input === '.') {
-                        value += '.';
-                        decimal.disabled = true;
-                    } else if (operand1 === '') {
+                            value += '.';
+                            decimal.disabled = true;
+                    }
+
+                    //store first operand if empty 
+                    else if (operand1 === '') {
                         operand1 = value;
                         value = '';
                         operator = input;
                         decimal.disabled = false;
-                    } else if (operator === '') {
+                    }
+
+                    //store operator value if empty
+                    else if (operator === '') {
                         operator = input;
                         decimal.disabled = false;
-                    } else if (operand2 === '' && operator !== '') {
+                    }
+
+                    //store second operand if empty and operator isn't empty
+                    else if (operand2 === '' && operator !== '') {
                         operand2 = value;
                         value = '';
                         result = operate(operator, operand1, operand2);
@@ -84,27 +118,35 @@ function main() {
 
 
 function add(num1, num2) {
-    return num1 + num2;
+    let addRes = num1+num2;
+    addRes = Math.round(addRes*1000)/1000;
+    return addRes;
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    let subtractRes = num1-num2;
+    subtractRes = Math.round(subtractRes*1000)/1000;
+    return subtractRes;
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    let multiplyRes = num1*num2;
+    multiplyRes = Math.round(multiplyRes*1000)/1000;
+    return multiplyRes;
 }
 
 function divide(num1, num2) {
     if (num2 === 0) {
         return 0;
     }
-    return num1 / num2;
+    let divideRes = num1/num2;
+    divideRes = Math.round(divideRes*1000)/1000;
+    return divideRes;
 }
 
 
 function operate(op, num1, num2) {
-    if(op == '' | num2 == ''){
+    if (op == '' | num2 == '') {
         return num1;
     }
     num1 = Number(num1);
@@ -125,5 +167,48 @@ function operate(op, num1, num2) {
             break;
         default:
             console.log('Oops, something went wrong');
+    }
+}
+
+function triggerKey(key){
+    if (!isNaN(key)) {
+        document.querySelector(`#num${key}`).click();
+    } else {
+        switch (key) {
+            case '+':
+                document.querySelector('#add').click();
+                break;
+            case '-':
+                document.querySelector('#subtract').click();
+                break;
+            case '*':
+                document.querySelector('#multiply').click();
+                break;
+            case '/':
+                key.preventDefault();
+                document.querySelector('#divide').click();
+                break;
+            case '=':
+                document.querySelector('#equals').click();
+                break;
+            case '.':
+                document.querySelector('#decimal').click();
+                break;
+            case 'Enter':
+                document.querySelector('#equals').click();
+                break;
+            case 'Delete':
+                document.querySelector('#deleteBtn').click();
+                break;
+            case 'Backspace':
+                document.querySelector('#deleteBtn').click();
+                break;
+            case 'Escape':
+                document.querySelector('#clearBtn').click();
+                break;
+            case 'c':
+                document.querySelector('#clearBtn').click();
+                break;
+        }
     }
 }
