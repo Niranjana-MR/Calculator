@@ -1,0 +1,90 @@
+#container {
+    display: grid;
+    justify-content: center;
+}
+
+#calculator {
+    display: grid;
+    width: 500px;
+    height: auto;
+    margin-top: 50px;
+    background-color: #2f5d62;
+    border: 1px solid #2f5d62;
+    border-radius: 12px;
+}
+
+#screen {
+    display: grid;
+    margin: 30px 30px 20px 30px;
+    height: 90px;
+    border-radius: 2px;
+    background-color: #dfeeea;
+}
+input{
+    font-size: 18px;
+    color: #1d1c1b;
+}
+
+button {
+    background-color: #5E8B7E;
+    font-size: 18px;
+    color: #dfeeea;
+    border: 1px solid #5E8B7E;
+    border-radius: 4px;
+    height: 60px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #5E8B7E;
+    font-size: 18px;
+    color: #dfeeea;
+    transform: scale(1.05);
+    border: 2px solid #a7c4bc;
+    border-radius: 4px;
+    height: 60px;
+}
+
+
+#functionalBtn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    justify-items: center;
+    margin: 10px 30px 10px 30px;
+
+}
+
+#clearBtn {
+    width: 210px;
+    height: 70px;
+}
+
+#deleteBtn {
+    width: 210px;
+    height: 70px;
+}
+
+
+#btnLayout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 20px;
+    margin: 20px 30px 30px 30px;
+}
+
+#numpad {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+#operators {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+}
